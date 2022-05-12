@@ -1,0 +1,42 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+[application]
+
+config/name="Atrias_app"
+run/main_scene="res://main.tscn"
+boot_splash/image="res://logo.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 1, 0.776471, 0.964706, 1 )
+
+[display]
+
+window/size/resizable=false
+
+[global]
+
+color=false
+splash=false
+
+[gui]
+
+theme/custom_font="res://huakang.tres"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_clear_color=Color( 1, 0.776471, 0.964706, 1 )
+environment/default_environment="res://default_env.tres"

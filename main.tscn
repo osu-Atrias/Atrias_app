@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://logo.png" type="Texture" id=1]
+[ext_resource path="res://main.gd" type="Script" id=2]
+[ext_resource path="res://MainControl.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "SplashFade"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 5.09824, 2.63902 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Root" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="SplashImage" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 103.0
+margin_top = 70.0
+margin_right = 922.0
+margin_bottom = 532.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SplashController" type="AnimationPlayer" parent="SplashImage"]
+autoplay = "SplashFade"
+anims/RESET = SubResource( 1 )
+anims/SplashFade = SubResource( 2 )
+
+[node name="MainControl" parent="." instance=ExtResource( 3 )]
+
+[connection signal="animation_finished" from="SplashImage/SplashController" to="." method="_on_SplashController_animation_finished"]
+[connection signal="animation_finished" from="SplashImage/SplashController" to="MainControl" method="_on_SplashController_animation_finished"]
