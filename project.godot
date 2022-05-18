@@ -27,7 +27,7 @@ splash=false
 
 [gui]
 
-theme/custom_font="res://huakang.tres"
+theme/custom_font="res://font.tres"
 
 [physics]
 

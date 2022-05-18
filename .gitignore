@@ -1,2 +1,4 @@
 /.import
 /build
+/lib/db-parser/target
+app.exe
