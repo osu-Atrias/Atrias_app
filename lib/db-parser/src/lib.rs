@@ -1,6 +1,9 @@
 mod osu_db;
 
 use gdnative::prelude::*;
+use std::{fs::File, io::Read};
+
+use crate::osu_db::OsuDb;
 
 #[derive(NativeClass)]
 #[inherit(Node)]
@@ -11,7 +14,6 @@ fn init(handle: InitHandle) {
 }
 
 impl DBparser {
-    /// The "constructor" of the class.
     fn new(_owner: &Node) -> Self {
         DBparser
     }
@@ -25,9 +27,13 @@ impl DBparser {
     }
 
     #[export]
-    fn ensure_db_structure(&self, _owner: &Node, path: String) -> bool{
-        godot_print!("ensure_db_structure: {}", path);
-        false
+    fn ensure_db_structure(&self, _owner: &Node, path: String) -> bool {
+        godot_print!("ensure_db_structure: {}", &path);
+        let mut file = File::open(path).unwrap();
+        let mut data = Vec::new();
+        file.read_to_end(&mut data).unwrap();
+        let osu_db = OsuDb::parse(&data);
+        true
     }
 }
 
