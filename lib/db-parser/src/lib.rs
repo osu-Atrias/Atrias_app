@@ -33,7 +33,11 @@ impl DBparser {
         let mut data = Vec::new();
         file.read_to_end(&mut data).unwrap();
         let osu_db = OsuDb::parse(&data);
-        true
+        if osu_db.folder_file_count != 0 {
+            true
+        } else {
+            false
+        }
     }
 }
 

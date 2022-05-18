@@ -7,7 +7,7 @@ use std::io::Cursor;
 #[derive(Debug)]
 pub struct OsuDb {
     database_version: u32,
-    folder_file_count: u32,
+    pub folder_file_count: u32,
     allow_user_switching: bool,
     allow_user_switching_restoration: u64,
     database_user_name: String,
